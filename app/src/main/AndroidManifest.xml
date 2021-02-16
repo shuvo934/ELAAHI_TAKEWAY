@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ttit.com.shuvo.elaahitakeway">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ELAAHITAKEWAY">
+        <activity android:name=".homepage.mainfood.setMealMenu.dialogueForMeal.NewYearMeal"></activity>
+        <activity android:name=".homepage.mainfood.setMealMenu.dialogueForMeal.ThaiMeal" />
+        <activity android:name=".homepage.mainfood.setMealMenu.dialogueForMeal.CheFsMeal2" />
+        <activity android:name=".homepage.mainfood.setMealMenu.dialogueForMeal.FullCourseDialogue" />
+        <activity android:name=".homepage.mainfood.setMealMenu.SetMeal" />
+        <activity android:name=".homepage.mainfood.drinksMenu.DrinksMenu" />
+        <activity android:name=".homepage.mainfood.dessertsMainMenu.DessertsMainMenu" />
+        <activity android:name=".homepage.mainfood.childrensMenuMain.ChildrensMenu" />
+        <activity android:name=".homepage.mainfood.sunDriesMainMenu.SunDriesMainMenu" />
+        <activity android:name=".homepage.mainfood.riceDishMainMenu.RiceDishMainMenu" />
+        <activity android:name=".homepage.mainfood.sideDishMainMenu.SideDishMainMenu" />
+        <activity android:name=".homepage.mainfood.mainCourseMenu.MainCourseMenu" />
+        <activity android:name=".homepage.mainfood.starterMainMenu.StarterMainMenu" />
+        <activity android:name=".homepage.mainfood.appitiser.AppitiserMainMenu" />
+        <activity android:name=".homepage.elaahifood.adult.maincourse.MainCourseElaahiAdult" />
+        <activity android:name=".homepage.elaahifood.adult.starters.StarterElaahiAdult" />
+        <activity android:name=".homepage.elaahifood.adult.AdultElaahi" />
+        <activity android:name=".homepage.festivalfood.child.ChildFestiveCategory" />
+        <activity android:name=".homepage.order.FinishActivity" />
+        <activity
+            android:name=".homepage.order.PlaceOrderActivity"
+            android:label="@string/title_activity_place_order"
+            android:theme="@style/Theme.ELAAHITAKEWAY.NoActionBar" />
+        <activity android:name=".homepage.cart.CartActivity" />
+        <activity android:name=".homepage.mainfood.MainMenuActivity" />
+        <activity android:name=".homepage.elaahifood.ElahiActivity" />
+        <activity android:name=".homepage.festivalfood.adult.AdultFestiveCategory" />
+        <activity android:name=".homepage.festivalfood.FestivalActivity" />
+        <activity android:name=".homepage.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

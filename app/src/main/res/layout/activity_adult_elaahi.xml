@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homepage.elaahifood.adult.AdultElaahi">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_adult_elaahi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView5_adult_elaahi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".35"
+            android:text="Number Of People"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="40dp"
+            android:id="@+id/minus_people_adult_elaahi"
+            android:layout_height="match_parent"
+            android:layout_weight=".15"
+            android:text="-"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/numberP_adult_elaahi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".35"
+            android:text="1"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/plus_people_adult_elaahi"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".15"
+            android:text="+"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_selection_adult_elaahi"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="SUBMIT"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_adult_elaahi">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/appitiser_adult_elaahi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/total_quantity_appt_adult_elaahi"
+                android:layout_weight=".3"
+                android:background="@drawable/button_design"
+                android:gravity="center"
+                android:onClick="btnClickedElahiAdult"
+                android:text="Appitiser"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/total_quantity_appt_adult_elaahi"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/ic_circle_gray"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/starters_adult_elaahi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/total_quantity_start_adult_elaahi"
+                android:background="@drawable/button_design"
+                android:onClick="btnClickedElahiAdult"
+                android:text="Starters"
+                android:textColor="@android:color/primary_text_light_nodisable" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/total_quantity_start_adult_elaahi"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/ic_circle_gray"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/main_course_adult_elaahi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/total_quantity_MC_adult_elaahi"
+                android:background="@drawable/button_design"
+                android:onClick="btnClickedElahiAdult"
+                android:text="Main Course"
+                android:textColor="@android:color/background_dark" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/total_quantity_MC_adult_elaahi"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/ic_circle_gray"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/sundries_adult_elaahi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/total_quantity_sundries_adult_elaahi"
+                android:background="@drawable/button_design"
+                android:onClick="btnClickedElahiAdult"
+                android:text="Sundries"
+                android:textColor="@android:color/background_dark" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/total_quantity_sundries_adult_elaahi"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/ic_circle_gray"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/desert_adult_elaahi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/total_quantity_desert_adult_elaahi"
+                android:background="@drawable/button_design"
+                android:onClick="btnClickedElahiAdult"
+                android:text="Dessert"
+                android:textColor="@android:color/background_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/total_quantity_desert_adult_elaahi"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/ic_circle_gray"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

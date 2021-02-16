@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/item2"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="Shopping Cart"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/item1"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="User Name"
+        app:showAsAction="always" >
+        <menu>
+
+            <item android:id="@+id/subitem1"
+
+                android:title="FeedBack"
+                />
+            <item android:id="@+id/subitem2"
+
+                android:title="LogOut"
+                />
+        </menu>
+    </item>
+
+
+</menu>
