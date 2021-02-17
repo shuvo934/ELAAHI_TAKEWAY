@@ -73,19 +73,26 @@ public class ThaiMeal extends AppCompatActivity {
             public void onClick(View v) {
                 String text = SetMeal.starterTitle;
                 String ppp = SetMeal.setMealPrice;
+                int j = 0;
+                tan = "";
                 for (int i = 0; i < tandooriSetMeal.size(); i++) {
                     if (tandooriSetMeal.get(i).getCheckedItem() == true) {
+                        j++;
                         tan += "\n" + tandooriSetMeal.get(i).getCheckBoxItem();
                         Log.i("Item vegan sidess", tan);
                         Log.i("Item vegan side", tandooriSetMeal.get(i).getCheckBoxItem());
                     }
                 }
-                if (tan.isEmpty()) {
-                    tan = "\n-------";
+                if (j == 2) {
+                    CartActivity.mainFoodList.add(new CartItem(text + "\n" + tan, "1", ppp));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+
+                } else {
+                    Toast.makeText(getApplicationContext(),"Please Select 2 Meal",Toast.LENGTH_SHORT).show();
                 }
-                CartActivity.mainFoodList.add(new CartItem(text + "\n" + tan, "1", ppp));
-                Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
-                finish();
+
+
             }
         });
     }

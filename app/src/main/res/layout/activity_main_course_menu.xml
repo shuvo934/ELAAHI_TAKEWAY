@@ -21,7 +21,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbarThumbVertical="@color/sea_green">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_courseRecycle_main"

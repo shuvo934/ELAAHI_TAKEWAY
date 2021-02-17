@@ -17,7 +17,7 @@ import ttit.com.shuvo.elaahitakeway.homepage.order.PlaceOrderActivity;
 
 public class CartActivity extends AppCompatActivity {
 
-    private Button confirm;
+    private Button confirm, moreOrder;
     public static ArrayList<CartItem> myCartList = new ArrayList<>();
     public static ArrayList<CartItem> mainFoodList = new ArrayList<>();
     private RecyclerView cartRecyclerView;
@@ -32,6 +32,7 @@ public class CartActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("CART");
 
         confirm = findViewById(R.id.confirm_order);
+        moreOrder = findViewById(R.id.order_more);
 
 //        myCartList.add(new CartItem("Burger", "1"));
 //        myCartList.add(new CartItem("Pizza", "3"));
@@ -60,6 +61,12 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        moreOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

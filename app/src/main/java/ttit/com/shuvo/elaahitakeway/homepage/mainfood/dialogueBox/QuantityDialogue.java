@@ -157,10 +157,7 @@ public class QuantityDialogue extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if (food.getText().toString().endsWith("VE")) {
-                            String text = food.getText().toString();
-                            food.setText(text.substring(0, text.length()-2));
-                        }
+
                         CartActivity.mainFoodList.add(new CartItem(food.getText().toString(), quantityView.getText().toString(), foodPrice));
                         Toast.makeText(getContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
                     }

@@ -169,8 +169,14 @@ public class CheFsMeal2 extends AppCompatActivity {
 
                 String text = SetMeal.starterTitle;
                 String ppp = SetMeal.setMealPrice;
+                int j = 0;
+                tan = "";
+                chsd = "";
+                ssf = "";
+                vsm = "";
                 for (int i = 0; i < tandooriSetMeal.size(); i++) {
                     if (tandooriSetMeal.get(i).getCheckedItem() == true) {
+                        j++;
                         tan += "\n" + "(" +tandooriSetMeal.get(i).getCheckBoxItem() + ")";
                         Log.i("Item vegan sidess", tan);
                         Log.i("Item vegan side", tandooriSetMeal.get(i).getCheckBoxItem());
@@ -179,6 +185,7 @@ public class CheFsMeal2 extends AppCompatActivity {
 
                 for (int i = 0; i < chefSignaatureSetMeal.size(); i++) {
                     if (chefSignaatureSetMeal.get(i).getCheckedItem() == true) {
+                        j++;
                         chsd += "\n" + "(" + chefSignaatureSetMeal.get(i).getCheckBoxItem() + ")";
                         Log.i("star vegan sidess", chsd);
                         Log.i("star vegan side", chefSignaatureSetMeal.get(i).getCheckBoxItem());
@@ -187,6 +194,7 @@ public class CheFsMeal2 extends AppCompatActivity {
 
                 for (int i = 0; i < spSeaFoodSetMeal.size(); i++) {
                     if (spSeaFoodSetMeal.get(i).getCheckedItem() == true) {
+                        j++;
                         ssf += "\n" + "(" + spSeaFoodSetMeal.get(i).getCheckBoxItem() + ")";
                         Log.i("Item vegan sidess", ssf);
                         Log.i("Item vegan side", spSeaFoodSetMeal.get(i).getCheckBoxItem());
@@ -195,34 +203,84 @@ public class CheFsMeal2 extends AppCompatActivity {
 
                 for (int i = 0; i < veganMainSetMeal.size(); i++) {
                     if (veganMainSetMeal.get(i).getCheckedItem() == true) {
+                        j++;
                         vsm += "\n" + "(" + veganMainSetMeal.get(i).getCheckBoxItem() + ")";
                         Log.i("Item vegan sidess", vsm);
                         Log.i("Item vegan side", veganMainSetMeal.get(i).getCheckBoxItem());
                     }
                 }
 
-                if (tan.isEmpty()) {
-                    tan = "\n-------";
-                }
-                if (chsd.isEmpty()) {
-                    chsd = "\n-------";
-                }
-                if (vsm.isEmpty()) {
-                    vsm = "\n-------";
-                }
-                if (ssf.isEmpty()) {
-                    ssf = "\n-------";
-                    CartActivity.mainFoodList.add(new CartItem(text + "\nTandoori / Grilled Specials:-" + tan + "\nChef’s Signature Dishes:-" + chsd + "\nSpecial Seafood Dishes:-" + ssf + "\nVegan Main Dishes:-" + vsm, "1", ppp));
+                if (!tan.isEmpty() && j == 2 && ssf.isEmpty() && vsm.isEmpty() && chsd.isEmpty()) {
+
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nTandoori / Grilled Specials:-" + tan , "1", ppp));
                     Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
                     finish();
-                }else {
+                }
+                else if (!chsd.isEmpty() && j == 2 && ssf.isEmpty() && vsm.isEmpty() && tan.isEmpty()) {
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nChef’s Signature Dishes:-" + chsd, "1", ppp));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else if (!vsm.isEmpty() && j == 2 && ssf.isEmpty() && tan.isEmpty() && chsd.isEmpty()) {
+
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Main Dishes:-" + vsm, "1", ppp));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else if (!ssf.isEmpty() && j == 2 && tan.isEmpty() && vsm.isEmpty() && chsd.isEmpty()) {
+
                     String i = ppp.substring(1);
                     Double p = Double.parseDouble(i);
                     p  = p + 1.50;
                     String prr = String.valueOf("£" + p);
-                    CartActivity.mainFoodList.add(new CartItem(text + "\nTandoori / Grilled Specials:-" + tan + "\nChef’s Signature Dishes:-" + chsd + "\nSpecial Seafood Dishes:-" + ssf + "\nVegan Main Dishes:-" + vsm, "1", prr));
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nSpecial Seafood Dishes:-" + ssf, "1", prr));
                     Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
                     finish();
+                }
+                else if (!tan.isEmpty() && !chsd.isEmpty()){
+
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nTandoori / Grilled Specials:-" + tan + "\nChef’s Signature Dishes:-" + chsd, "1", ppp));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else if (!tan.isEmpty() && !vsm.isEmpty()) {
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nTandoori / Grilled Specials:-" + tan + "\nVegan Main Dishes:-" + vsm, "1", ppp));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else if (!tan.isEmpty() && !ssf.isEmpty()) {
+                    String i = ppp.substring(1);
+                    Double p = Double.parseDouble(i);
+                    p  = p + 1.50;
+                    String prr = String.valueOf("£" + p);
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nTandoori / Grilled Specials:-" + tan + "\nSpecial Seafood Dishes:-" + ssf, "1", prr));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else if (!chsd.isEmpty() && !vsm.isEmpty()) {
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nChef’s Signature Dishes:-" + chsd + "\nVegan Main Dishes:-" + vsm, "1", ppp));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else if (!chsd.isEmpty() && !ssf.isEmpty()) {
+                    String i = ppp.substring(1);
+                    Double p = Double.parseDouble(i);
+                    p  = p + 1.50;
+                    String prr = String.valueOf("£" + p);
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nChef’s Signature Dishes:-" + chsd + "\nSpecial Seafood Dishes:-" + ssf, "1", prr));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else if (!ssf.isEmpty() && !vsm.isEmpty()) {
+                    String i = ppp.substring(1);
+                    Double p = Double.parseDouble(i);
+                    p  = p + 1.50;
+                    String prr = String.valueOf("£" + p);
+                    CartActivity.mainFoodList.add(new CartItem(text + "\nSpecial Seafood Dishes:-" + ssf + "\nVegan Main Dishes:-" + vsm, "1", prr));
+                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Please Select Your Meal Properly",Toast.LENGTH_SHORT).show();
                 }
             }
         });

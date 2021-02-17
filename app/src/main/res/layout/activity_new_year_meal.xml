@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="8"
+    android:weightSum="5"
     tools:context=".homepage.mainfood.setMealMenu.dialogueForMeal.NewYearMeal">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.06"
+        android:layout_weight="1.15"
         android:weightSum="2"
         android:orientation="horizontal">
         <TextView
@@ -33,7 +33,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.06"
+        android:layout_weight="1.15"
         android:weightSum="2"
         android:orientation="horizontal">
         <TextView
@@ -55,7 +55,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.06">
+        android:layout_weight="1.15">
         <TextView
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -66,10 +66,26 @@
             android:textColor="@color/purple_700"/>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".94"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight=".4">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -81,14 +97,13 @@
             android:gravity="center"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/mc_ny_tg_view"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".94"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -100,15 +115,14 @@
             android:gravity="center"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/mc_ny_cfsd_view"/>
 
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".94"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -121,15 +135,14 @@
             android:gravity="center"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/mc_ny_ssfd_view"/>
 
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".94"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -142,15 +155,22 @@
             android:gravity="center"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/mc_ny_vmd_view"/>
 
 
     </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.06">
+        android:layout_weight="1.15">
 
         <Button
             android:layout_marginLeft="5dp"

@@ -71,6 +71,7 @@ public class MainCourseMenu extends AppCompatActivity implements MainCourseMenuA
         mainCourseView = findViewById(R.id.main_courseRecycle_main);
         mainCourseView.setHasFixedSize(true);
         mainCourseLayout = new LinearLayoutManager(this);
+        mainCourseLayout.isSmoothScrolling();
         mainCourseView.setLayoutManager(mainCourseLayout);
 
         mainCourseAdapter = new MainCourseMenuAdapter(this, myMCItemsMain, this::onStarterItemClicked);

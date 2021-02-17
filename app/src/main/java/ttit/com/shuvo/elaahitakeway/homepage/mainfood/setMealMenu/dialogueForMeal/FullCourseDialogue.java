@@ -134,8 +134,15 @@ public class FullCourseDialogue extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int j = 0;
+                veganSD = "";
+                veganSS = "";
+                rSD = "";
+                String text = SetMeal.starterTitle;
+                String ppp = SetMeal.setMealPrice;
                 for (int i = 0; i < veganSideItem.size(); i++) {
                     if (veganSideItem.get(i).getCheckedItem() == true) {
+                        j++;
                         veganSD += "\n" + "(" + veganSideItem.get(i).getCheckBoxItem() + ")";
                         Log.i("Item vegan sidess", veganSD);
                         Log.i("Item vegan side", veganSideItem.get(i).getCheckBoxItem());
@@ -144,45 +151,76 @@ public class FullCourseDialogue extends AppCompatActivity {
 
                 for (int i = 0; i < veganStarterItem.size(); i++) {
                     if (veganStarterItem.get(i).getCheckedItem() == true) {
+                        j++;
                         veganSS += "\n" + "(" + veganStarterItem.get(i).getCheckBoxItem() + ")";
                         Log.i("star vegan sidess", veganSS);
                         Log.i("star vegan side", veganStarterItem.get(i).getCheckBoxItem());
                     }
                 }
 
+                int k = 0;
                 for (int i = 0; i < riceDishesItem.size(); i++) {
                     if (riceDishesItem.get(i).getCheckedItem() == true) {
+                        k++;
                         rSD += "\n" + "(" + riceDishesItem.get(i).getCheckBoxItem() + ")";
                         Log.i("Item vegan sidess", rSD);
                         Log.i("Item vegan side", riceDishesItem.get(i).getCheckBoxItem());
                     }
                 }
-                if (veganSS.isEmpty()) {
-                    veganSS = "\n-------";
+                if (veganSS.isEmpty() && j == 3 & k == 1) {
+                    if (rSD.contains("1")) {
+                        String i = ppp.substring(1);
+                        Double p = Double.parseDouble(i);
+                        p  = p + 1.0;
+                        String prr = String.valueOf("£" + p);
+                        CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Side Dish:-" + veganSD + "\nSundries:-" + rSD, "1", prr));
+                        Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else {
+                        CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Side Dish:-" + veganSD + "\nSundries:-" + rSD, "1", ppp));
+                        Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
-                if (veganSD.isEmpty()) {
-                    veganSD = "\n-------";
+                 else if (veganSD.isEmpty() && j == 3 && k == 1) {
+                    if (rSD.contains("1")) {
+                        String i = ppp.substring(1);
+                        Double p = Double.parseDouble(i);
+                        p  = p + 1.0;
+                        String prr = String.valueOf("£" + p);
+                        CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Starter:-" + veganSS + "\nSundries:-" + rSD, "1", prr));
+                        Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else {
+                        CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Starter:-" + veganSS + "\nSundries:-" + rSD, "1", ppp));
+                        Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
-                if (rSD.isEmpty()) {
-                    rSD = "\n-------";
+                else if (j == 3 && k == 1) {
+
+                    if (rSD.contains("1")) {
+                        String i = ppp.substring(1);
+                        Double p = Double.parseDouble(i);
+                        p  = p + 1.0;
+                        String prr = String.valueOf("£" + p);
+                        CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Starter:-" + veganSS + "\nVegan Side Dish:-" + veganSD + "\nSundries:-" + rSD, "1", prr));
+                        Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else {
+                        CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Starter:-" + veganSS + "\nVegan Side Dish:-" + veganSD + "\nSundries:-" + rSD, "1", ppp));
+                        Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Please Select Your Meal Properly",Toast.LENGTH_SHORT).show();
                 }
                 Log.i("total",veganSS);
-                String text = SetMeal.starterTitle;
-                String ppp = SetMeal.setMealPrice;
 
-                if (rSD.contains("1")) {
-                    String i = ppp.substring(1);
-                    Double p = Double.parseDouble(i);
-                    p  = p + 1.0;
-                    String prr = String.valueOf("£" + p);
-                    CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Starter:-" + veganSS + "\nVegan Side Dish:-" + veganSD + "\nSundries:-" + rSD, "1", prr));
-                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
-                    finish();
-                }else {
-                    CartActivity.mainFoodList.add(new CartItem(text + "\nVegan Starter:-" + veganSS + "\nVegan Side Dish:-" + veganSD + "\nSundries:-" + rSD, "1", ppp));
-                    Toast.makeText(getApplicationContext(),"Item Added to Cart",Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+
+
 
 
             }
