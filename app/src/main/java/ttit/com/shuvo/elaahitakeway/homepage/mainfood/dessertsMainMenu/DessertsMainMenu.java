@@ -18,10 +18,15 @@ import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.cart.CartActivity;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.MainCategoryMenu.food1;
 
 public class DessertsMainMenu extends AppCompatActivity {
 
     public static ArrayList<NormalFoodItem> myRiceItem;
+    public static ArrayList<SubCategoryItemTag> desstag;
 
     private RecyclerView riceView;
     private AppitiserMainMenuAdapter riceAdapter;
@@ -34,17 +39,21 @@ public class DessertsMainMenu extends AppCompatActivity {
 
         getSupportActionBar().setTitle("DESSERTS");
 
+        desstag = new ArrayList<>();
+
+        desstag = food1;
+
         myRiceItem = new ArrayList<>();
 
-        myRiceItem.add(new NormalFoodItem("Gulab Jaman (V) (N)","(Delicate dough balls consisting of milk & flour dipped in sugar syrup, flavoured with cardamon seeds & rose water. Served with fresh cream)", "£2.60"));
-        myRiceItem.add(new NormalFoodItem("Chocolate Fudge Cake","", "£2.60"));
-        myRiceItem.add(new NormalFoodItem("Vanilla Cheesecake & Coulis","", "£2.60"));
+//        myRiceItem.add(new NormalFoodItem("Gulab Jaman (V) (N)","(Delicate dough balls consisting of milk & flour dipped in sugar syrup, flavoured with cardamon seeds & rose water. Served with fresh cream)", "£2.60"));
+//        myRiceItem.add(new NormalFoodItem("Chocolate Fudge Cake","", "£2.60"));
+//        myRiceItem.add(new NormalFoodItem("Vanilla Cheesecake & Coulis","", "£2.60"));
         riceView = findViewById(R.id.desserts_main_menu);
         riceView.setHasFixedSize(true);
         riceLayout = new LinearLayoutManager(this);
         riceView.setLayoutManager(riceLayout);
 
-        riceAdapter = new AppitiserMainMenuAdapter(this, myRiceItem);
+        riceAdapter = new AppitiserMainMenuAdapter(this, desstag);
         riceView.setAdapter(riceAdapter);
     }
     @Override
@@ -68,6 +77,7 @@ public class DessertsMainMenu extends AppCompatActivity {
 
                 Intent intent = new Intent(this, CartActivity.class);
                 startActivity(intent);
+                food1.clear();
                 finish();
                 return true;
             case R.id.subitem1:
@@ -82,5 +92,11 @@ public class DessertsMainMenu extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        food1.clear();
+        finish();
     }
 }

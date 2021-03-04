@@ -22,16 +22,17 @@ import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.dialogueBox.FlavorDialogue;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.dialogueBox.MeatSelectionDialogue;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
 
 public class MeatSelectionAdapter extends RecyclerView.Adapter<MeatSelectionAdapter.MeatSelectionViewHolder> {
 
 
-    public ArrayList<NormalFoodItem> myNormalFoodItem;
+    public ArrayList<SubCategoryItemTag> myNormalFoodItem;
     public static String foodNameFromAdapter;
     public static String priceFormAdapter;
     public Context myContext;
 
-    public MeatSelectionAdapter(Context context, ArrayList<NormalFoodItem> normalFoodItems) {
+    public MeatSelectionAdapter(Context context, ArrayList<SubCategoryItemTag> normalFoodItems) {
         this.myContext = context;
         this.myNormalFoodItem = normalFoodItems;
     }
@@ -47,26 +48,36 @@ public class MeatSelectionAdapter extends RecyclerView.Adapter<MeatSelectionAdap
     @Override
     public void onBindViewHolder(@NonNull MeatSelectionViewHolder holder, int position) {
 
-        NormalFoodItem nFI = myNormalFoodItem.get(position);
+        SubCategoryItemTag nFI = myNormalFoodItem.get(position);
 
-        holder.mainFoodName.setText(nFI.getMyFood());
-        holder.mainFoodDesc.setText(nFI.getMyFoodDesc());
-        holder.mainFoodPrice.setText(nFI.getMyFoodPrice());
+        holder.mainFoodName.setText(nFI.getfName()+ " " + nFI.getfTag() + " " + nFI.getfTest());
+        holder.mainFoodDesc.setText(nFI.getfNote());
+        holder.mainFoodPrice.setText("");
 
-        if (holder.mainFoodName.getText().toString().endsWith("VE")) {
+        if (holder.mainFoodName.getText().toString().contains("null")) {
+            String name = holder.mainFoodName.getText().toString().replace("null","");
+            holder.mainFoodName.setText(name);
+        }
+
+
+        if (holder.mainFoodDesc.getText().toString().contains("null")) {
+            holder.mainFoodDesc.setText("");
+        }
+
+        if (holder.mainFoodName.getText().toString().endsWith("VE ")) {
 
             String text = holder.mainFoodName.getText().toString();
             SpannableString ss = new SpannableString(text);
-            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-2, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-3, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.mainFoodName.setText(ss);
             Log.i("paisi",holder.mainFoodName.getText().toString());
 
         }
-        if (holder.mainFoodName.getText().toString().endsWith("V")) {
+        if (holder.mainFoodName.getText().toString().endsWith("V ")) {
 
             String text = holder.mainFoodName.getText().toString();
             SpannableString ss = new SpannableString(text);
-            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-1, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-2, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.mainFoodName.setText(ss);
             Log.i("paisi",holder.mainFoodName.getText().toString());
 
@@ -127,7 +138,7 @@ public class MeatSelectionAdapter extends RecyclerView.Adapter<MeatSelectionAdap
             addButtonToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    foodNameFromAdapter = myNormalFoodItem.get(getAdapterPosition()).getMyFood();
+                    foodNameFromAdapter = myNormalFoodItem.get(getAdapterPosition()).getfName();
                     //priceFormAdapter = myNormalFoodItem.get(getAdapterPosition()).getMyFoodPrice();
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
                     MeatSelectionDialogue meatSelectionDialogue = new MeatSelectionDialogue();

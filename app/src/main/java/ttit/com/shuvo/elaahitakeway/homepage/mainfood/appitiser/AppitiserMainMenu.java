@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.cart.CartActivity;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.MainCategoryMenu.food1;
 
 public class AppitiserMainMenu extends AppCompatActivity {
 
@@ -27,6 +30,8 @@ public class AppitiserMainMenu extends AppCompatActivity {
     private AppitiserMainMenuAdapter aptMainMenuAdapter;
     private RecyclerView.LayoutManager aptLayout;
 
+    public static ArrayList<SubCategoryItemTag> mAppFoodTag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,24 +39,27 @@ public class AppitiserMainMenu extends AppCompatActivity {
 
         getSupportActionBar().setTitle("APPERTISERS");
 
+        mAppFoodTag = new ArrayList<>();
+        mAppFoodTag = food1;
+
         myApptItemMainMenu = new ArrayList<>();
 
-        myApptItemMainMenu.add(new NormalFoodItem("Popadom","", "£0.65"));
-        myApptItemMainMenu.add(new NormalFoodItem("Onion Salad VE","", "£0.65"));
-        myApptItemMainMenu.add(new NormalFoodItem("Mango chutney VE","", "£0.65"));
-        myApptItemMainMenu.add(new NormalFoodItem("Mint Sauce VE","", "£0.65"));
-        myApptItemMainMenu.add(new NormalFoodItem("Sweet Chilli Sauce VE","", "£0.65"));
-        myApptItemMainMenu.add(new NormalFoodItem("Chilli Pickle","", "£0.70"));
-        myApptItemMainMenu.add(new NormalFoodItem("Lime Pickle VE","", "£0.70"));
-        myApptItemMainMenu.add(new NormalFoodItem("Peri peri hot sauce VE","", "£0.70"));
-        myApptItemMainMenu.add(new NormalFoodItem("Pickle Platter VE","", "£2.10"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Popadom","", "£0.65"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Onion Salad VE","", "£0.65"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Mango chutney VE","", "£0.65"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Mint Sauce VE","", "£0.65"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Sweet Chilli Sauce VE","", "£0.65"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Chilli Pickle","", "£0.70"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Lime Pickle VE","", "£0.70"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Peri peri hot sauce VE","", "£0.70"));
+//        myApptItemMainMenu.add(new NormalFoodItem("Pickle Platter VE","", "£2.10"));
 
         normalFoodView = findViewById(R.id.normal_main_menu_view);
         normalFoodView.setHasFixedSize(true);
         aptLayout = new LinearLayoutManager(this);
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new AppitiserMainMenuAdapter(this, myApptItemMainMenu);
+        aptMainMenuAdapter = new AppitiserMainMenuAdapter(this, mAppFoodTag);
         normalFoodView.setAdapter(aptMainMenuAdapter);
     }
 
@@ -76,6 +84,7 @@ public class AppitiserMainMenu extends AppCompatActivity {
 
                 Intent intent = new Intent(this, CartActivity.class);
                 startActivity(intent);
+                food1.clear();
                 finish();
                 return true;
             case R.id.subitem1:
@@ -90,5 +99,11 @@ public class AppitiserMainMenu extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        food1.clear();
+        finish();
     }
 }

@@ -20,11 +20,17 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenu;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenu.starteritempricetag;
 
 public class VegetableV extends AppCompatDialogFragment {
 
     public static ArrayList<NormalFoodItem> myStarterItem2;
+
+    public static ArrayList<SubCategoryItemTag> starter2v;
 
     private RecyclerView normalFoodView;
     private AppitiserMainMenuAdapter aptMainMenuAdapter;
@@ -49,35 +55,42 @@ public class VegetableV extends AppCompatDialogFragment {
         cancel = view.findViewById(R.id.cancel_image);
         okBtn = view.findViewById(R.id.ok_button);
 
+        starter2v = new ArrayList<>();
+
+        starter2v = starteritempricetag;
+
         myStarterItem2 = new ArrayList<>();
 
-        myStarterItem2.add(new NormalFoodItem("Onion Bhaji (4)", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Veg Samosa (2)", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Stir Fried Garlic Mushrooms", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Stir Fried Paneer New  Medium", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Stirfried Chick peas and Potaoes", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Vegetable Biraan", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Spicy Stir-fried Chickpeas", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Tamarind Potatoes", "","£3.00"));
-        myStarterItem2.add(new NormalFoodItem("Okra & Potato Bhaji", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Onion Bhaji (4)", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Veg Samosa (2)", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Stir Fried Garlic Mushrooms", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Stir Fried Paneer New  Medium", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Stirfried Chick peas and Potaoes", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Vegetable Biraan", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Spicy Stir-fried Chickpeas", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Tamarind Potatoes", "","£3.00"));
+//        myStarterItem2.add(new NormalFoodItem("Okra & Potato Bhaji", "","£3.00"));
 
         normalFoodView = view.findViewById(R.id.appitiser_list_view);
         normalFoodView.setHasFixedSize(true);
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), myStarterItem2);
+        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), starter2v);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                starteritempricetag.clear();
             }
         });
 
@@ -85,6 +98,7 @@ public class VegetableV extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                starteritempricetag.clear();
             }
         });
 

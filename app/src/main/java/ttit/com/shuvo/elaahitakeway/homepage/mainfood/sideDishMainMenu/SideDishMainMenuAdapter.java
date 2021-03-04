@@ -19,15 +19,16 @@ import java.util.ArrayList;
 
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.elaahifood.adult.starters.StarterItem;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
 
 
 public class SideDishMainMenuAdapter extends RecyclerView.Adapter<SideDishMainMenuAdapter.SideDishViewHolder> {
 
-    public ArrayList<StarterItem> itemsOfStarter;
+    public ArrayList<SubCategoryItemTag> itemsOfStarter;
     public Context starterContext;
     private ClickedStarterItem myStarterItem;
 
-    public SideDishMainMenuAdapter(Context myContext, ArrayList<StarterItem> starterItems, ClickedStarterItem csi) {
+    public SideDishMainMenuAdapter(Context myContext, ArrayList<SubCategoryItemTag> starterItems, ClickedStarterItem csi) {
         this.itemsOfStarter = starterItems;
         this.starterContext = myContext;
         this.myStarterItem = csi;
@@ -48,11 +49,11 @@ public class SideDishMainMenuAdapter extends RecyclerView.Adapter<SideDishMainMe
     @Override
     public void onBindViewHolder(@NonNull SideDishViewHolder holder, int position) {
 
-        StarterItem starterItem = itemsOfStarter.get(position);
+        SubCategoryItemTag starterItem = itemsOfStarter.get(position);
 
-        holder.starterItemName.setText(starterItem.getTypeOfFood());
-        holder.starterItemDescription.setText(starterItem.getFoodDescribed());
-        holder.starterCount.setText(starterItem.getFoodCount());
+        holder.starterItemName.setText(starterItem.getfName());
+        holder.starterItemDescription.setText(starterItem.getfNote());
+        holder.starterCount.setText(starterItem.getfRate());
         holder.starterCount.setVisibility(View.INVISIBLE);
 
         if (holder.starterItemName.getText().toString().endsWith("V")) {
@@ -63,6 +64,10 @@ public class SideDishMainMenuAdapter extends RecyclerView.Adapter<SideDishMainMe
             holder.starterItemName.setText(ss);
             Log.i("paisi",holder.starterItemName.getText().toString());
 
+        }
+
+        if (holder.starterItemDescription.getText().toString().contains("null")) {
+            holder.starterItemDescription.setText("");
         }
 
     }
@@ -96,7 +101,7 @@ public class SideDishMainMenuAdapter extends RecyclerView.Adapter<SideDishMainMe
         @Override
         public void onClick(View v) {
             clickedStarterItem.onStarterItemClicked(getAdapterPosition());
-            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getTypeOfFood());
+            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getfName());
         }
     }
 }

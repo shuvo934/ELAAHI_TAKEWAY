@@ -20,11 +20,17 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.sideDishMainMenu.SideDishMainMenu;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.sideDishMainMenu.SideDishMainMenu.sideItemtag;
 
 public class VeganSIDEDish extends AppCompatDialogFragment {
 
     public static ArrayList<NormalFoodItem> myStarteritem1;
+
+    public static ArrayList<SubCategoryItemTag> side2Item;
 
     private RecyclerView normalFoodView;
     private AppitiserMainMenuAdapter aptMainMenuAdapter;
@@ -50,20 +56,24 @@ public class VeganSIDEDish extends AppCompatDialogFragment {
         okBtn = view.findViewById(R.id.ok_button);
 
         myStarteritem1 = new ArrayList<>();
+        side2Item = new ArrayList<>();
 
-        myStarteritem1.add(new NormalFoodItem("Saag Bhaji", "","£2.90"));
-        myStarteritem1.add(new NormalFoodItem("Mixed Veg Bhaji", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Chickpeas & Potato Bhaji", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Bombay Potato", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Saag Aloo ( spinich & potatoes)", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Tarka Dhal ( lentils)", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Spicy Stir Fried Chick Peas", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Garlic Mushroom Bhaji", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Tamarind Potatoes", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Okra & Potato Bhaji", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Okra Bhaji", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Potatoes & Cauliflower bhaji", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Bhindy Baji", "","£2.95"));
+        side2Item = sideItemtag;
+
+
+//        myStarteritem1.add(new NormalFoodItem("Saag Bhaji", "","£2.90"));
+//        myStarteritem1.add(new NormalFoodItem("Mixed Veg Bhaji", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Chickpeas & Potato Bhaji", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Bombay Potato", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Saag Aloo ( spinich & potatoes)", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Tarka Dhal ( lentils)", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Spicy Stir Fried Chick Peas", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Garlic Mushroom Bhaji", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Tamarind Potatoes", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Okra & Potato Bhaji", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Okra Bhaji", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Potatoes & Cauliflower bhaji", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Bhindy Baji", "","£2.95"));
 
 
         normalFoodView = view.findViewById(R.id.appitiser_list_view);
@@ -71,17 +81,20 @@ public class VeganSIDEDish extends AppCompatDialogFragment {
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), myStarteritem1);
+        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), side2Item);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sideItemtag.clear();
                 dialog.dismiss();
             }
         });
@@ -89,6 +102,7 @@ public class VeganSIDEDish extends AppCompatDialogFragment {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sideItemtag.clear();
                 dialog.dismiss();
             }
         });

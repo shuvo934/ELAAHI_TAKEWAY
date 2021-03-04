@@ -28,6 +28,9 @@ import ttit.com.shuvo.elaahitakeway.homepage.mainfood.setMealMenu.dialogueForMea
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.sideDishMainMenu.SideDishMainMenuAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.sideDishMainMenu.dialogueBOXForItem.ClassicDish;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.sideDishMainMenu.dialogueBOXForItem.VeganSIDEDish;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.MainCategoryMenu.food1;
 
 public class SetMeal extends AppCompatActivity implements SetMealAdapter.ClickedStarterItem {
 
@@ -40,34 +43,39 @@ public class SetMeal extends AppCompatActivity implements SetMealAdapter.Clicked
 
     public static ArrayList<NormalFoodItem> mySetMealItem;
 
+    public static ArrayList<SubCategoryItemTag> setMmeal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_meal);
 
         getSupportActionBar().setTitle("SET MEAL");
+        setMmeal = new ArrayList<>();
+        setMmeal = food1;
 
         setMealOK = findViewById(R.id.set_meal_ok);
 
-        mySetMealItem = new ArrayList<>();
-        mySetMealItem.add(new NormalFoodItem("Vegan for 1 V", "Appetisers: 2 Popadoms, Onion/Mango Chutney"+"\n"+"Main Courses: Choose any 3 Vegan Starter or Side dishes from the pop-up that appears" + "\n" +"Sundries: Choose any rice from the pop-up","£8.95"));
-        mySetMealItem.add(new NormalFoodItem("Curry Meal for 2", "Appetisers: 2 Popadoms, Onion/Mango Chutney" + "\n" +"Starters: Chicken Tikka, Onion Bhaji" + "\n" + "Main Courses: Chicken Tikka Massala, Chicken Bhuna" + "\n" + "Sundries: 1 Pilau Rice, 1 Nan","£18.50"));
-        mySetMealItem.add(new NormalFoodItem("Tandoori Meal for 2", "Appetisers: 2 Popadoms, Onion/Mango Chutney"+ "\n" + "Starters: Tandoori Chicken, Onion & Garlic Seekh Kebab" + "\n" + "Main Courses: Chicken Tikka Massala, Tandoori Chicken Tikka" + "\n" + "Sundries: Bhuna Sauce, 1 Pilau Rice, 1 Nan","£19.50"));
-        mySetMealItem.add(new NormalFoodItem("Chef's Meal for 2", "Add to your basket then choose any two main meals from the pop-up that appears (seafood £1.50 extra) Comes complete with:-" + "\n" + "Appetisers: 2 Popadoms, Onion/Mango Chutney" + "\n" + "Starters: Chicken Biraan, Mixed Starter" + "\n" + "Sundries: 1 Pilau Rice, 1 Nan","£22.95"));
-        mySetMealItem.add(new NormalFoodItem("Thali Platter", "Add to your basket then choose any two Thali main meals from the pop-up that appears (seafood £1.50 extra) Comes complete with:-" + "\n" + "Appetisers: 2 Popadoms, Chutneys" + "\n" + "Starter: Onion Bhaji" + "\n" + "Side: Bombay Potatoes" + "\n" + "Sundries: 1 Pilau Rice, 1 Plain Nan","£10.95"));
-        mySetMealItem.add(new NormalFoodItem("NEW YEARS Eve", "Set Meal For 1","£9.95"));
+//        mySetMealItem = new ArrayList<>();
+//        mySetMealItem.add(new NormalFoodItem("Vegan for 1 V", "Appetisers: 2 Popadoms, Onion/Mango Chutney"+"\n"+"Main Courses: Choose any 3 Vegan Starter or Side dishes from the pop-up that appears" + "\n" +"Sundries: Choose any rice from the pop-up","£8.95"));
+//        mySetMealItem.add(new NormalFoodItem("Curry Meal for 2", "Appetisers: 2 Popadoms, Onion/Mango Chutney" + "\n" +"Starters: Chicken Tikka, Onion Bhaji" + "\n" + "Main Courses: Chicken Tikka Massala, Chicken Bhuna" + "\n" + "Sundries: 1 Pilau Rice, 1 Nan","£18.50"));
+//        mySetMealItem.add(new NormalFoodItem("Tandoori Meal for 2", "Appetisers: 2 Popadoms, Onion/Mango Chutney"+ "\n" + "Starters: Tandoori Chicken, Onion & Garlic Seekh Kebab" + "\n" + "Main Courses: Chicken Tikka Massala, Tandoori Chicken Tikka" + "\n" + "Sundries: Bhuna Sauce, 1 Pilau Rice, 1 Nan","£19.50"));
+//        mySetMealItem.add(new NormalFoodItem("Chef's Meal for 2", "Add to your basket then choose any two main meals from the pop-up that appears (seafood £1.50 extra) Comes complete with:-" + "\n" + "Appetisers: 2 Popadoms, Onion/Mango Chutney" + "\n" + "Starters: Chicken Biraan, Mixed Starter" + "\n" + "Sundries: 1 Pilau Rice, 1 Nan","£22.95"));
+//        mySetMealItem.add(new NormalFoodItem("Thali Platter", "Add to your basket then choose any two Thali main meals from the pop-up that appears (seafood £1.50 extra) Comes complete with:-" + "\n" + "Appetisers: 2 Popadoms, Chutneys" + "\n" + "Starter: Onion Bhaji" + "\n" + "Side: Bombay Potatoes" + "\n" + "Sundries: 1 Pilau Rice, 1 Plain Nan","£10.95"));
+//        mySetMealItem.add(new NormalFoodItem("NEW YEARS Eve", "Set Meal For 1","£9.95"));
 
         setMealView = findViewById(R.id.set_meal_recycle);
         setMealView.setHasFixedSize(true);
         setMealLayout = new LinearLayoutManager(this);
         setMealView.setLayoutManager(setMealLayout);
 
-        setMealAdapter = new SetMealAdapter(this, mySetMealItem, this::onStarterItemClicked);
+        setMealAdapter = new SetMealAdapter(this, setMmeal, this::onStarterItemClicked);
         setMealView.setAdapter(setMealAdapter);
 
         setMealOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                food1.clear();
                 finish();
             }
         });
@@ -94,6 +102,7 @@ public class SetMeal extends AppCompatActivity implements SetMealAdapter.Clicked
 
                 Intent intent = new Intent(this, CartActivity.class);
                 startActivity(intent);
+                food1.clear();
                 finish();
                 return true;
             case R.id.subitem1:
@@ -113,48 +122,54 @@ public class SetMeal extends AppCompatActivity implements SetMealAdapter.Clicked
     @Override
     public void onStarterItemClicked(int starterItemPosition) {
 
-        String item = mySetMealItem.get(starterItemPosition).getMyFood();
-        if (item.equals("Vegan for 1 V")) {
-            setMealPrice = mySetMealItem.get(starterItemPosition).getMyFoodPrice();
-            starterTitle = "Vegan for 1 V";
+        String item = setMmeal.get(starterItemPosition).getfId();
+        if (item.equals("335")) {
+            setMealPrice = "£"+setMmeal.get(starterItemPosition).getfRate();
+            starterTitle = setMmeal.get(starterItemPosition).getfName();
 
             Intent intent = new Intent(this, FullCourseDialogue.class);
             startActivity(intent);
 
 
-        }else if (item.equals("Curry Meal for 2")) {
-            starterTitle = "Curry Meal for 2";
-            setMealPrice = mySetMealItem.get(starterItemPosition).getMyFoodPrice();
+        }else if (item.equals("394")) {
+            setMealPrice = "£"+setMmeal.get(starterItemPosition).getfRate();
+            starterTitle = setMmeal.get(starterItemPosition).getfName();
 
             QuantityDialogue quantityDialogue = new QuantityDialogue();
             quantityDialogue.qunatityValue = 2;
             quantityDialogue.show(getSupportFragmentManager(),"SetQuantity");
 
 
-        } else if(item.equals("Tandoori Meal for 2")) {
-            starterTitle = "Tandoori Meal for 2";
-            setMealPrice = mySetMealItem.get(starterItemPosition).getMyFoodPrice();
+        } else if(item.equals("395")) {
+            setMealPrice = "£"+setMmeal.get(starterItemPosition).getfRate();
+            starterTitle = setMmeal.get(starterItemPosition).getfName();
             QuantityDialogue quantityDialogue = new QuantityDialogue();
             quantityDialogue.qunatityValue = 2;
             quantityDialogue.show(getSupportFragmentManager(),"MealQuantity");
-        }else if(item.equals("Chef's Meal for 2")) {
-            starterTitle = "Chef's Meal for 2";
-            setMealPrice = mySetMealItem.get(starterItemPosition).getMyFoodPrice();
+        }else if(item.equals("396")) {
+            setMealPrice = "£"+setMmeal.get(starterItemPosition).getfRate();
+            starterTitle = setMmeal.get(starterItemPosition).getfName();
 
             Intent intent1 = new Intent(this, CheFsMeal2.class);
             startActivity(intent1);
-        }else if(item.equals("Thali Platter")) {
-            starterTitle = "Thali Platter";
-            setMealPrice = mySetMealItem.get(starterItemPosition).getMyFoodPrice();
+        }else if(item.equals("397")) {
+            setMealPrice = "£"+setMmeal.get(starterItemPosition).getfRate();
+            starterTitle = setMmeal.get(starterItemPosition).getfName();
 
             Intent intent = new Intent(this, ThaiMeal.class);
             startActivity(intent);
-        }else if(item.equals("NEW YEARS Eve")) {
-            starterTitle = "NEW YEARS Eve";
-            setMealPrice = mySetMealItem.get(starterItemPosition).getMyFoodPrice();
+        }else if(item.equals("466")) {
+            setMealPrice = "£"+setMmeal.get(starterItemPosition).getfRate();
+            starterTitle = setMmeal.get(starterItemPosition).getfName();
             Intent intent = new Intent(this, NewYearMeal.class);
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        food1.clear();
+        finish();
     }
 }

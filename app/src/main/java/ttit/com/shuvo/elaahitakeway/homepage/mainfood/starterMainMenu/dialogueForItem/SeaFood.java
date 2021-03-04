@@ -20,7 +20,11 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenu;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenu.starteritempricetag;
 
 public class SeaFood extends AppCompatDialogFragment {
     public static ArrayList<NormalFoodItem> myStarteritem1;
@@ -32,6 +36,8 @@ public class SeaFood extends AppCompatDialogFragment {
     private TextView titleName;
     public ImageView cancel;
     public Button okBtn;
+
+    public static ArrayList<SubCategoryItemTag> sssff;
 
     @NonNull
     @Override
@@ -48,32 +54,39 @@ public class SeaFood extends AppCompatDialogFragment {
         cancel = view.findViewById(R.id.cancel_image);
         okBtn = view.findViewById(R.id.ok_button);
 
+        sssff = new ArrayList<>();
+
+        sssff = starteritempricetag;
+
         myStarteritem1 = new ArrayList<>();
 
-        myStarteritem1.add(new NormalFoodItem("King Prawn Puri", "(Mild) (No shells)","£4.15"));
-        myStarteritem1.add(new NormalFoodItem("Prawn Puri", "(Mild) (No shells)","£3.25"));
-        myStarteritem1.add(new NormalFoodItem("Stir fried Tiger king prawns New  Medium", "(No shells) Succelent tiger king prawns stir fried with onion, tomatoe & peppers","£4.95"));
-        myStarteritem1.add(new NormalFoodItem("Peri Peri Tiger King Prawns New  HOT", "(No shells) Succulent fresh Tiger king prawns cooked with onions & peri peri sauce.","£4.95"));
-        myStarteritem1.add(new NormalFoodItem("Pan fried Seabass  MILD", "","£4.95"));
-        myStarteritem1.add(new NormalFoodItem("Pan fried Salmon  MILD", "","£4.95"));
-        myStarteritem1.add(new NormalFoodItem("Mossalla grilled Fish Fillet New  SPICY", "","£4.95"));
+//        myStarteritem1.add(new NormalFoodItem("King Prawn Puri", "(Mild) (No shells)","£4.15"));
+//        myStarteritem1.add(new NormalFoodItem("Prawn Puri", "(Mild) (No shells)","£3.25"));
+//        myStarteritem1.add(new NormalFoodItem("Stir fried Tiger king prawns New  Medium", "(No shells) Succelent tiger king prawns stir fried with onion, tomatoe & peppers","£4.95"));
+//        myStarteritem1.add(new NormalFoodItem("Peri Peri Tiger King Prawns New  HOT", "(No shells) Succulent fresh Tiger king prawns cooked with onions & peri peri sauce.","£4.95"));
+//        myStarteritem1.add(new NormalFoodItem("Pan fried Seabass  MILD", "","£4.95"));
+//        myStarteritem1.add(new NormalFoodItem("Pan fried Salmon  MILD", "","£4.95"));
+//        myStarteritem1.add(new NormalFoodItem("Mossalla grilled Fish Fillet New  SPICY", "","£4.95"));
 
         normalFoodView = view.findViewById(R.id.appitiser_list_view);
         normalFoodView.setHasFixedSize(true);
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), myStarteritem1);
+        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), sssff);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                starteritempricetag.clear();
                 dialog.dismiss();
             }
         });
@@ -81,6 +94,7 @@ public class SeaFood extends AppCompatDialogFragment {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                starteritempricetag.clear();
                 dialog.dismiss();
             }
         });

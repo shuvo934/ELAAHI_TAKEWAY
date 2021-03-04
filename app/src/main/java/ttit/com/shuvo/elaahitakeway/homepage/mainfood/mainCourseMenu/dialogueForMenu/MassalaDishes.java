@@ -19,12 +19,19 @@ import java.util.ArrayList;
 
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenu;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.MainCourseMenu;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.MainCourseMenu.mainFoodTag;
 
 public class MassalaDishes extends AppCompatDialogFragment {
 
     public static ArrayList<NormalFoodItem> myStarteritem1;
+
+    public static ArrayList<SubCategoryItemTag> mMassalaaTag;
 
     private RecyclerView normalFoodView;
     private AppitiserMainMenuAdapter aptMainMenuAdapter;
@@ -50,13 +57,16 @@ public class MassalaDishes extends AppCompatDialogFragment {
         okBtn = view.findViewById(R.id.ok_button);
 
         myStarteritem1 = new ArrayList<>();
+        mMassalaaTag = new ArrayList<>();
 
-        myStarteritem1.add(new NormalFoodItem("Chicken Tikka", "","£6.65"));
-        myStarteritem1.add(new NormalFoodItem("Lamb Tikka", "","£6.75"));
-        myStarteritem1.add(new NormalFoodItem("Tandoori King Prawn", "","£8.60"));
-        myStarteritem1.add(new NormalFoodItem("Tandoori Mix", "","£8.50"));
-        myStarteritem1.add(new NormalFoodItem("Vegetable", "","£5.60"));
-        myStarteritem1.add(new NormalFoodItem("Vegan", "","£5.60"));
+        mMassalaaTag = mainFoodTag;
+
+//        myStarteritem1.add(new NormalFoodItem("Chicken Tikka", "","£6.65"));
+//        myStarteritem1.add(new NormalFoodItem("Lamb Tikka", "","£6.75"));
+//        myStarteritem1.add(new NormalFoodItem("Tandoori King Prawn", "","£8.60"));
+//        myStarteritem1.add(new NormalFoodItem("Tandoori Mix", "","£8.50"));
+//        myStarteritem1.add(new NormalFoodItem("Vegetable", "","£5.60"));
+//        myStarteritem1.add(new NormalFoodItem("Vegan", "","£5.60"));
 
 
         normalFoodView = view.findViewById(R.id.appitiser_list_view);
@@ -64,17 +74,20 @@ public class MassalaDishes extends AppCompatDialogFragment {
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), myStarteritem1);
+        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), mMassalaaTag);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainFoodTag.clear();
                 dialog.dismiss();
             }
         });
@@ -82,6 +95,7 @@ public class MassalaDishes extends AppCompatDialogFragment {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainFoodTag.clear();
                 dialog.dismiss();
             }
         });

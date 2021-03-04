@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="50dp"
-    android:padding="35dp"
+    android:padding="50dp"
     android:layout_margin="40dp"
     android:elevation="50dp"
     android:outlineAmbientShadowColor="@color/black">
@@ -19,7 +19,7 @@
         android:shadowColor="@color/black"
         android:shadowDx="10"
         android:shadowDy="10"
-        android:text="Festival Food"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold|italic" />

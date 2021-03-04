@@ -22,11 +22,17 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenu;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenu.starteritempricetag;
 
 public class MeatPoultry extends AppCompatDialogFragment {
 
     public static ArrayList<NormalFoodItem> myStarteritem1;
+
+    public static ArrayList<SubCategoryItemTag> starteritem1;
 
     private RecyclerView normalFoodView;
     private AppitiserMainMenuAdapter aptMainMenuAdapter;
@@ -51,40 +57,45 @@ public class MeatPoultry extends AppCompatDialogFragment {
         cancel = view.findViewById(R.id.cancel_image);
         okBtn = view.findViewById(R.id.ok_button);
 
+        starteritem1 = new ArrayList<>();
+        starteritem1 = starteritempricetag;
         myStarteritem1 = new ArrayList<>();
 
-        myStarteritem1.add(new NormalFoodItem("Chicken Biraan", "","£3.95"));
-        myStarteritem1.add(new NormalFoodItem("Chicken Chat", "","£3.30"));
-        myStarteritem1.add(new NormalFoodItem("Chicken Pakora (4)", "","£3.30"));
-        myStarteritem1.add(new NormalFoodItem("Tandoori Mixed Kebab", "(chicken & Lamb Tikka & Seek Kebab)\"","£3.95"));
-        myStarteritem1.add(new NormalFoodItem("Seek Kebab (2)", "","£3.15"));
-        myStarteritem1.add(new NormalFoodItem("Mumbai Grilled Chilli Chicken  HOT", "","£4.15"));
-        myStarteritem1.add(new NormalFoodItem("Meat Samosa (2)", "","£3.25"));
-        myStarteritem1.add(new NormalFoodItem("Chicken tikka", "","£3.20"));
-        myStarteritem1.add(new NormalFoodItem("Lamb Tikka", "","£3.30"));
-        myStarteritem1.add(new NormalFoodItem("Chicken Shashlik ", "(Grilled with onions, tomatoes & peppers)","£3.50"));
-        myStarteritem1.add(new NormalFoodItem("Lamb Shashlik", "(Grilled with onions, tomatoes & peppers)","£3.60"));
-        myStarteritem1.add(new NormalFoodItem("Mixed Starter", "(Onion Bhaji, Samosa, Seek Kebab)","£3.90"));
-        myStarteritem1.add(new NormalFoodItem("Southern Fried Chicken Mini Fillets x 4 ( New )", "","£3.95"));
-        myStarteritem1.add(new NormalFoodItem("Spicy Peri Peri Chicken Mini fillets x 4 (New)", "","£4.35"));
-        myStarteritem1.add(new NormalFoodItem("Loaded peri chicken & Fries ( new)", "","£4.95"));
+//        myStarteritem1.add(new NormalFoodItem("Chicken Biraan", "","£3.95"));
+//        myStarteritem1.add(new NormalFoodItem("Chicken Chat", "","£3.30"));
+//        myStarteritem1.add(new NormalFoodItem("Chicken Pakora (4)", "","£3.30"));
+//        myStarteritem1.add(new NormalFoodItem("Tandoori Mixed Kebab", "(chicken & Lamb Tikka & Seek Kebab)\"","£3.95"));
+//        myStarteritem1.add(new NormalFoodItem("Seek Kebab (2)", "","£3.15"));
+//        myStarteritem1.add(new NormalFoodItem("Mumbai Grilled Chilli Chicken  HOT", "","£4.15"));
+//        myStarteritem1.add(new NormalFoodItem("Meat Samosa (2)", "","£3.25"));
+//        myStarteritem1.add(new NormalFoodItem("Chicken tikka", "","£3.20"));
+//        myStarteritem1.add(new NormalFoodItem("Lamb Tikka", "","£3.30"));
+//        myStarteritem1.add(new NormalFoodItem("Chicken Shashlik ", "(Grilled with onions, tomatoes & peppers)","£3.50"));
+//        myStarteritem1.add(new NormalFoodItem("Lamb Shashlik", "(Grilled with onions, tomatoes & peppers)","£3.60"));
+//        myStarteritem1.add(new NormalFoodItem("Mixed Starter", "(Onion Bhaji, Samosa, Seek Kebab)","£3.90"));
+//        myStarteritem1.add(new NormalFoodItem("Southern Fried Chicken Mini Fillets x 4 ( New )", "","£3.95"));
+//        myStarteritem1.add(new NormalFoodItem("Spicy Peri Peri Chicken Mini fillets x 4 (New)", "","£4.35"));
+//        myStarteritem1.add(new NormalFoodItem("Loaded peri chicken & Fries ( new)", "","£4.95"));
 
         normalFoodView = view.findViewById(R.id.appitiser_list_view);
         normalFoodView.setHasFixedSize(true);
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), myStarteritem1);
+        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), starteritem1);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                starteritempricetag.clear();
                 dialog.dismiss();
             }
         });
@@ -92,6 +103,7 @@ public class MeatPoultry extends AppCompatDialogFragment {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                starteritempricetag.clear();
                 dialog.dismiss();
             }
         });

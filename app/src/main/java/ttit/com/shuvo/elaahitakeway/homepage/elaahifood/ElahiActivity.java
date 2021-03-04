@@ -3,6 +3,8 @@ package ttit.com.shuvo.elaahitakeway.homepage.elaahifood;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,47 +19,60 @@ import android.widget.Toast;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.cart.CartActivity;
 import ttit.com.shuvo.elaahitakeway.homepage.elaahifood.adult.AdultElaahi;
+import ttit.com.shuvo.elaahitakeway.homepage.festivalfood.FestivalAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.festivalfood.adult.AdultFestiveCategory;
 import ttit.com.shuvo.elaahitakeway.homepage.festivalfood.child.ChildFestiveCategory;
 
-public class ElahiActivity extends AppCompatActivity {
+import static ttit.com.shuvo.elaahitakeway.homepage.MainActivity.elaahiCategory;
+
+
+public class ElahiActivity extends AppCompatActivity implements FestivalAdapter.FestiveClickedItem {
 
     private TextView categoryName;
-    private TextView adult;
-    private TextView child;
+
+
+    private RecyclerView recyclerView;
+    private FestivalAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elahi);
         categoryName = findViewById(R.id.categoryElahi);
-        adult = findViewById(R.id.adult_elahi);
-        child = findViewById(R.id.child_elahi);
+
         Intent intent = getIntent();
         String categoryValue = intent.getStringExtra("categoryElahi");
 
         if (categoryValue == null) {
-            categoryName.setText("Elaahi Specials");
+            categoryName.setText("ELAAHI SPECIAL");
         } else {
             categoryName.setText(categoryValue);
         }
+
+        recyclerView = findViewById(R.id.ellahi_recycler);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new FestivalAdapter(elaahiCategory, this);
+        recyclerView.setAdapter(adapter);
     }
 
-    public void childElaahi(View v) {
-        Intent intent = new Intent(this, AdultElaahi.class);
-        intent.putExtra("CategoryName", categoryName.getText().toString());
-        intent.putExtra("SubCategoryName", child.getText().toString());
-        startActivity(intent);
-        finish();
-    }
-
-    public void adultElaahi(View v) {
-        Intent intent = new Intent(this, AdultElaahi.class);
-        intent.putExtra("CategoryName", categoryName.getText().toString());
-        intent.putExtra("SubCategoryName", adult.getText().toString());
-        startActivity(intent);
-        finish();
-    }
+//    public void childElaahi(View v) {
+//        Intent intent = new Intent(this, AdultElaahi.class);
+//        intent.putExtra("CategoryName", categoryName.getText().toString());
+//        intent.putExtra("SubCategoryName", child.getText().toString());
+//        startActivity(intent);
+//        finish();
+//    }
+//
+//    public void adultElaahi(View v) {
+//        Intent intent = new Intent(this, AdultElaahi.class);
+//        intent.putExtra("CategoryName", categoryName.getText().toString());
+//        intent.putExtra("SubCategoryName", adult.getText().toString());
+//        startActivity(intent);
+//        finish();
+//    }
 
     // @params - Menu Options created
     @Override
@@ -96,4 +111,25 @@ public class ElahiActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onCategoryClicked(int CategoryPosition) {
+        String te = elaahiCategory.get(CategoryPosition).getMyFoodDesc();
+
+        if (te.equals("1")) {
+
+            Intent intent = new Intent(this, AdultElaahi.class);
+            intent.putExtra("CategoryName", categoryName.getText().toString());
+            intent.putExtra("SubCategoryName", elaahiCategory.get(CategoryPosition).getMyFood());
+            startActivity(intent);
+            finish();
+
+        } else if (te.equals("2")) {
+
+            Intent intent = new Intent(this, AdultElaahi.class);
+            intent.putExtra("CategoryName", categoryName.getText().toString());
+            intent.putExtra("SubCategoryName", elaahiCategory.get(CategoryPosition).getMyFood());
+            startActivity(intent);
+            finish();
+        }
+    }
 }

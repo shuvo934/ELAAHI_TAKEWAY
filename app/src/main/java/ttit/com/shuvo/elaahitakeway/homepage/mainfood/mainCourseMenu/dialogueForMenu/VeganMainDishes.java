@@ -22,10 +22,15 @@ import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.FlavorAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.MainCourseMenu;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.MainCourseMenu.mainFoodTag;
 
 public class VeganMainDishes extends AppCompatDialogFragment {
 
     public static ArrayList<NormalFoodItem> myStarteritem1;
+
+    public static ArrayList<SubCategoryItemTag> veganTag;
 
     private RecyclerView normalFoodView;
     private FlavorAdapter aptMainMenuAdapter;
@@ -52,12 +57,16 @@ public class VeganMainDishes extends AppCompatDialogFragment {
 
         myStarteritem1 = new ArrayList<>();
 
-        myStarteritem1.add(new NormalFoodItem("Chicken Tikka", "","£6.65"));
-        myStarteritem1.add(new NormalFoodItem("Lamb Tikka", "","£6.75"));
-        myStarteritem1.add(new NormalFoodItem("Tandoori King Prawn", "","£8.60"));
-        myStarteritem1.add(new NormalFoodItem("Tandoori Mix", "","£8.50"));
-        myStarteritem1.add(new NormalFoodItem("Vegetable", "","£5.60"));
-        myStarteritem1.add(new NormalFoodItem("Vegan", "","£5.60"));
+        veganTag = new ArrayList<>();
+
+        veganTag = mainFoodTag;
+
+//        myStarteritem1.add(new NormalFoodItem("Chicken Tikka", "","£6.65"));
+//        myStarteritem1.add(new NormalFoodItem("Lamb Tikka", "","£6.75"));
+//        myStarteritem1.add(new NormalFoodItem("Tandoori King Prawn", "","£8.60"));
+//        myStarteritem1.add(new NormalFoodItem("Tandoori Mix", "","£8.50"));
+//        myStarteritem1.add(new NormalFoodItem("Vegetable", "","£5.60"));
+//        myStarteritem1.add(new NormalFoodItem("Vegan", "","£5.60"));
 
 
         normalFoodView = view.findViewById(R.id.appitiser_list_view);
@@ -65,17 +74,20 @@ public class VeganMainDishes extends AppCompatDialogFragment {
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new FlavorAdapter(getContext(), myStarteritem1);
+        aptMainMenuAdapter = new FlavorAdapter(getContext(), veganTag);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainFoodTag.clear();
                 dialog.dismiss();
             }
         });
@@ -83,6 +95,7 @@ public class VeganMainDishes extends AppCompatDialogFragment {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainFoodTag.clear();
                 dialog.dismiss();
             }
         });

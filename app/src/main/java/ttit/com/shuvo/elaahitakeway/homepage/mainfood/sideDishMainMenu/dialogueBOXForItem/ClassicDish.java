@@ -20,11 +20,17 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.sideDishMainMenu.SideDishMainMenu;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenu;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.sideDishMainMenu.SideDishMainMenu.sideItemtag;
 
 public class ClassicDish extends AppCompatDialogFragment {
     public static ArrayList<NormalFoodItem> myStarteritem1;
+
+    public static ArrayList<SubCategoryItemTag> side1item;
 
     private RecyclerView normalFoodView;
     private AppitiserMainMenuAdapter aptMainMenuAdapter;
@@ -49,22 +55,26 @@ public class ClassicDish extends AppCompatDialogFragment {
         cancel = view.findViewById(R.id.cancel_image);
         okBtn = view.findViewById(R.id.ok_button);
 
+        side1item = new ArrayList<>();
+
+        side1item = sideItemtag;
+
         myStarteritem1 = new ArrayList<>();
 
-        myStarteritem1.add(new NormalFoodItem("Saag Paneer", "","£2.90"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Balti Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Pathia Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Passanda Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Shaheen Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Korma Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Mossala Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Dupiaza Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Dansak Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Bhuna Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Rogan Josh Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Samber Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Madras Sauce", "","£2.95"));
-        myStarteritem1.add(new NormalFoodItem("Portion of Vindaloo Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Saag Paneer", "","£2.90"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Balti Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Pathia Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Passanda Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Shaheen Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Korma Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Mossala Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Dupiaza Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Dansak Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Bhuna Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Rogan Josh Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Samber Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Madras Sauce", "","£2.95"));
+//        myStarteritem1.add(new NormalFoodItem("Portion of Vindaloo Sauce", "","£2.95"));
 
 
         normalFoodView = view.findViewById(R.id.appitiser_list_view);
@@ -72,17 +82,20 @@ public class ClassicDish extends AppCompatDialogFragment {
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), myStarteritem1);
+        aptMainMenuAdapter = new AppitiserMainMenuAdapter(getContext(), side1item);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sideItemtag.clear();
                 dialog.dismiss();
             }
         });
@@ -90,6 +103,7 @@ public class ClassicDish extends AppCompatDialogFragment {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sideItemtag.clear();
                 dialog.dismiss();
             }
         });

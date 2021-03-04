@@ -20,14 +20,15 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.elaahifood.adult.starters.StarterItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.StarterMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
 
 public class MainCourseMenuAdapter extends RecyclerView.Adapter<MainCourseMenuAdapter.MainCourseMenuViewHolder> {
 
-    public ArrayList<StarterItem> itemsOfStarter;
+    public ArrayList<SubCategoryItemTag> itemsOfStarter;
     public Context starterContext;
     private ClickedStarterItem myStarterItem;
 
-    public MainCourseMenuAdapter(Context myContext, ArrayList<StarterItem> starterItems, ClickedStarterItem csi) {
+    public MainCourseMenuAdapter(Context myContext, ArrayList<SubCategoryItemTag> starterItems, ClickedStarterItem csi) {
         this.itemsOfStarter = starterItems;
         this.starterContext = myContext;
         this.myStarterItem = csi;
@@ -48,14 +49,23 @@ public class MainCourseMenuAdapter extends RecyclerView.Adapter<MainCourseMenuAd
     @Override
     public void onBindViewHolder(@NonNull MainCourseMenuViewHolder holder, int position) {
 
-        StarterItem starterItem = itemsOfStarter.get(position);
+        SubCategoryItemTag starterItem = itemsOfStarter.get(position);
 
-        holder.starterItemName.setText(starterItem.getTypeOfFood());
-        holder.starterItemDescription.setText(starterItem.getFoodDescribed());
-        holder.starterCount.setText(starterItem.getFoodCount());
+        holder.starterItemName.setText(starterItem.getfName() + " " + starterItem.getfTag() + " " + starterItem.getfTest());
+        holder.starterItemDescription.setText(starterItem.getfNote());
+        holder.starterCount.setText(starterItem.getfRate());
         holder.starterCount.setVisibility(View.INVISIBLE);
 
-        if (holder.starterItemName.getText().toString().endsWith("V")) {
+        if (holder.starterItemName.getText().toString().contains("null")) {
+            String name = holder.starterItemName.getText().toString().replace("null","");
+            holder.starterItemName.setText(name);
+        }
+
+        if (holder.starterItemDescription.getText().toString().contains("null")){
+            holder.starterItemDescription.setText("");
+        }
+
+        if (holder.starterItemName.getText().toString().endsWith("V ")) {
 
             String text = holder.starterItemName.getText().toString();
             SpannableString ss = new SpannableString(text);
@@ -64,6 +74,22 @@ public class MainCourseMenuAdapter extends RecyclerView.Adapter<MainCourseMenuAd
             Log.i("paisi",holder.starterItemName.getText().toString());
 
         }
+
+//        if (starterItem.getfTag().contains("null") && starterItem.getfTest().contains("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName());
+//
+//        } else if(!starterItem.getfTest().contains("null") && starterItem.getfTag().contains("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName() + " " +starterItem.getfTest());
+//
+//        } else if (starterItem.getfTest().contains("null") && !starterItem.getfTag().contains("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName() + " "+ starterItem.getfTag());
+//
+//        }
+
+
 
     }
 
@@ -96,7 +122,7 @@ public class MainCourseMenuAdapter extends RecyclerView.Adapter<MainCourseMenuAd
         @Override
         public void onClick(View v) {
             clickedStarterItem.onStarterItemClicked(getAdapterPosition());
-            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getTypeOfFood());
+            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getfName());
         }
     }
 

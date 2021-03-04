@@ -1,4 +1,4 @@
-package ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu;
+package ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -19,64 +19,73 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import ttit.com.shuvo.elaahitakeway.R;
+import ttit.com.shuvo.elaahitakeway.homepage.elaahifood.adult.starters.StarterItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.dialogueBox.QuantityDialogue;
-import ttit.com.shuvo.elaahitakeway.homepage.mainfood.dialogueBox.SauceDialogueforMenu;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
 
-public class MCItemAdapter extends RecyclerView.Adapter<MCItemAdapter.MCItemViewHolder> {
+public class ApptestAdapter extends RecyclerView.Adapter<ApptestAdapter.AppViewHolder> {
 
-    public ArrayList<SubCategoryItemTag> myNormalFoodItem;
+
+    public ArrayList<NormalFoodItem> myNormalFoodItem;
     public static String foodNameFromAdapter;
     public static String priceFormAdapter;
     public Context myContext;
 
-    public MCItemAdapter(Context context, ArrayList<SubCategoryItemTag> normalFoodItems) {
+    public ApptestAdapter(Context context, ArrayList<NormalFoodItem> normalFoodItems) {
         this.myContext = context;
         this.myNormalFoodItem = normalFoodItems;
     }
 
     @NonNull
     @Override
-    public MCItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AppViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(myContext).inflate(R.layout.fooditem, parent, false);
-        MCItemViewHolder ammvh = new MCItemViewHolder(v);
+        AppViewHolder ammvh = new AppViewHolder(v);
         return ammvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MCItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AppViewHolder holder, int position) {
 
-        SubCategoryItemTag nFI = myNormalFoodItem.get(position);
+        NormalFoodItem nFI = myNormalFoodItem.get(position);
 
-        holder.mainFoodName.setText(nFI.getfName() + " " + nFI.getfTag() + " " + nFI.getfTest());
-        holder.mainFoodDesc.setText(nFI.getfNote());
-        holder.mainFoodPrice.setText("£" +nFI.getfRate());
+        holder.mainFoodName.setText(nFI.getMyFood());
+        holder.mainFoodDesc.setText(nFI.getMyFoodDesc());
+        holder.mainFoodPrice.setText(nFI.getMyFoodPrice());
 
-        if (holder.mainFoodName.getText().toString().contains("null")) {
-            String name = holder.mainFoodName.getText().toString().replace("null","");
-            holder.mainFoodName.setText(name);
+        if (holder.mainFoodName.getText().toString().endsWith("null")) {
+            holder.mainFoodName.setText(nFI.getMyFood());
         }
-
 
         if (holder.mainFoodDesc.getText().toString().contains("null")) {
             holder.mainFoodDesc.setText("");
         }
 
-        if (holder.mainFoodName.getText().toString().endsWith("VE ")) {
+        if (holder.mainFoodName.getText().toString().endsWith("(V) (N)")) {
 
             String text = holder.mainFoodName.getText().toString();
             SpannableString ss = new SpannableString(text);
-            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-3, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-7, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.mainFoodName.setText(ss);
             Log.i("paisi",holder.mainFoodName.getText().toString());
 
         }
-        if (holder.mainFoodName.getText().toString().endsWith("V ")) {
+
+        if (holder.mainFoodName.getText().toString().endsWith("VE")) {
 
             String text = holder.mainFoodName.getText().toString();
             SpannableString ss = new SpannableString(text);
             ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-2, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.mainFoodName.setText(ss);
+            Log.i("paisi",holder.mainFoodName.getText().toString());
+
+        }
+        if (holder.mainFoodName.getText().toString().endsWith("V")) {
+
+            String text = holder.mainFoodName.getText().toString();
+            SpannableString ss = new SpannableString(text);
+            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-1, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.mainFoodName.setText(ss);
             Log.i("paisi",holder.mainFoodName.getText().toString());
 
@@ -108,7 +117,7 @@ public class MCItemAdapter extends RecyclerView.Adapter<MCItemAdapter.MCItemView
         if ( holder.mainFoodName.getText().toString().endsWith("MILD")) {
             String text = holder.mainFoodName.getText().toString();
             SpannableString ss = new SpannableString(text);
-            ss.setSpan(new ForegroundColorSpan(Color.rgb(192, 57, 43)),text.length()-5, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ss.setSpan(new ForegroundColorSpan(Color.rgb(192, 57, 43)),text.length()-4, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.mainFoodName.setText(ss);
             //Log.i("paisi",holder.appitisernName.getText().toString());
         }
@@ -119,14 +128,14 @@ public class MCItemAdapter extends RecyclerView.Adapter<MCItemAdapter.MCItemView
         return myNormalFoodItem.size();
     }
 
-    public class MCItemViewHolder extends RecyclerView.ViewHolder {
+    public class AppViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mainFoodName;
         public TextView mainFoodDesc;
         public TextView mainFoodPrice;
         public Button addButtonToCart;
 
-        public MCItemViewHolder(@NonNull View itemView) {
+        public AppViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mainFoodName = itemView.findViewById(R.id.foodName_normal);
@@ -137,12 +146,12 @@ public class MCItemAdapter extends RecyclerView.Adapter<MCItemAdapter.MCItemView
             addButtonToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    foodNameFromAdapter = myNormalFoodItem.get(getAdapterPosition()).getfName();
-                    priceFormAdapter = "£"+myNormalFoodItem.get(getAdapterPosition()).getfRate();
+                    foodNameFromAdapter = myNormalFoodItem.get(getAdapterPosition()).getMyFood();
+                    priceFormAdapter = myNormalFoodItem.get(getAdapterPosition()).getMyFoodPrice();
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                    SauceDialogueforMenu sauceDialogueforMenu = new SauceDialogueforMenu();
-                    sauceDialogueforMenu.sauceValue = 0;
-                    sauceDialogueforMenu.show(activity.getSupportFragmentManager(),"SauceKhao");
+                    QuantityDialogue quantityDialogue = new QuantityDialogue();
+                    quantityDialogue.qunatityValue = 0;
+                    quantityDialogue.show(activity.getSupportFragmentManager(),"Quantity");
                 }
             });
         }

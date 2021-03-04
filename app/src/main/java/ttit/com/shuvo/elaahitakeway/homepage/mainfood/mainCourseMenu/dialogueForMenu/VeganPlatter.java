@@ -22,10 +22,15 @@ import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.FlavorAdapter;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.MainCourseMenu;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.VeganplatterChoiceAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.mainCourseMenu.MainCourseMenu.mainFoodTag;
 
 public class VeganPlatter extends AppCompatDialogFragment {
 
     public static ArrayList<NormalFoodItem> myStarteritem1;
+
+    public static ArrayList<SubCategoryItemTag> vpTag;
 
     private RecyclerView normalFoodView;
     private VeganplatterChoiceAdapter aptMainMenuAdapter;
@@ -50,9 +55,13 @@ public class VeganPlatter extends AppCompatDialogFragment {
         cancel = view.findViewById(R.id.cancel_image);
         okBtn = view.findViewById(R.id.ok_button);
 
+        vpTag = new ArrayList<>();
+
         myStarteritem1 = new ArrayList<>();
 
-        myStarteritem1.add(new NormalFoodItem("Vegan-Platter", "(100% Vegan). Choose any three vegan dishes, and the spice strength you want, from the pop-up that appears","£6.95"));
+        vpTag = mainFoodTag;
+
+      //  myStarteritem1.add(new NormalFoodItem("Vegan-Platter", "(100% Vegan). Choose any three vegan dishes, and the spice strength you want, from the pop-up that appears","£6.95"));
 
 
 
@@ -61,17 +70,20 @@ public class VeganPlatter extends AppCompatDialogFragment {
         aptLayout = new LinearLayoutManager(getContext());
         normalFoodView.setLayoutManager(aptLayout);
 
-        aptMainMenuAdapter = new VeganplatterChoiceAdapter(getContext(), myStarteritem1);
+        aptMainMenuAdapter = new VeganplatterChoiceAdapter(getContext(), vpTag);
         normalFoodView.setAdapter(aptMainMenuAdapter);
 
 
         builder.setView(view);
 
         AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainFoodTag.clear();
                 dialog.dismiss();
             }
         });
@@ -79,6 +91,7 @@ public class VeganPlatter extends AppCompatDialogFragment {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainFoodTag.clear();
                 dialog.dismiss();
             }
         });

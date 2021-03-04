@@ -18,6 +18,10 @@ import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.cart.CartActivity;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.MainCategoryMenu.food1;
 
 public class RiceDishMainMenu extends AppCompatActivity {
 
@@ -27,6 +31,8 @@ public class RiceDishMainMenu extends AppCompatActivity {
     private AppitiserMainMenuAdapter riceAdapter;
     private RecyclerView.LayoutManager riceLayout;
 
+    public static ArrayList<SubCategoryItemTag> rrdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,24 +40,28 @@ public class RiceDishMainMenu extends AppCompatActivity {
 
         getSupportActionBar().setTitle("RICE DISHES");
 
+        rrdd = new ArrayList<>();
+
+        rrdd = food1;
+
         myRiceItem = new ArrayList<>();
 
-        myRiceItem.add(new NormalFoodItem("Boiled Rice","", "£2.45"));
-        myRiceItem.add(new NormalFoodItem("Pilau Rice","", "£2.60"));
-        myRiceItem.add(new NormalFoodItem("Egg Rice","", "£2.90"));
-        myRiceItem.add(new NormalFoodItem("Mushroom Rice","", "£2.90"));
-        myRiceItem.add(new NormalFoodItem("Vegetable Rice","", "£2.90"));
-        myRiceItem.add(new NormalFoodItem("Chana Rice","", "£2.90"));
-        myRiceItem.add(new NormalFoodItem("Sweet Coconut Rice","", "£2.90"));
-        myRiceItem.add(new NormalFoodItem("Lemon Rice","", "£2.90"));
-        myRiceItem.add(new NormalFoodItem("Keema Rice","", "£2.90"));
+//        myRiceItem.add(new NormalFoodItem("Boiled Rice","", "£2.45"));
+//        myRiceItem.add(new NormalFoodItem("Pilau Rice","", "£2.60"));
+//        myRiceItem.add(new NormalFoodItem("Egg Rice","", "£2.90"));
+//        myRiceItem.add(new NormalFoodItem("Mushroom Rice","", "£2.90"));
+//        myRiceItem.add(new NormalFoodItem("Vegetable Rice","", "£2.90"));
+//        myRiceItem.add(new NormalFoodItem("Chana Rice","", "£2.90"));
+//        myRiceItem.add(new NormalFoodItem("Sweet Coconut Rice","", "£2.90"));
+//        myRiceItem.add(new NormalFoodItem("Lemon Rice","", "£2.90"));
+//        myRiceItem.add(new NormalFoodItem("Keema Rice","", "£2.90"));
 
         riceView = findViewById(R.id.rice_dish_main_menu_view);
         riceView.setHasFixedSize(true);
         riceLayout = new LinearLayoutManager(this);
         riceView.setLayoutManager(riceLayout);
 
-        riceAdapter = new AppitiserMainMenuAdapter(this, myRiceItem);
+        riceAdapter = new AppitiserMainMenuAdapter(this, rrdd);
         riceView.setAdapter(riceAdapter);
     }
 
@@ -76,6 +86,7 @@ public class RiceDishMainMenu extends AppCompatActivity {
 
                 Intent intent = new Intent(this, CartActivity.class);
                 startActivity(intent);
+                food1.clear();
                 finish();
                 return true;
             case R.id.subitem1:
@@ -90,5 +101,11 @@ public class RiceDishMainMenu extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        food1.clear();
+        finish();
     }
 }

@@ -20,18 +20,19 @@ import java.util.ArrayList;
 import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.elaahifood.adult.starters.StarterItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
 
 
 public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.SetMealViewHolder> {
 
-    public ArrayList<NormalFoodItem> itemsOfStarter;
+    public ArrayList<SubCategoryItemTag> itemsOfStarter;
     public Context starterContext;
     private ClickedStarterItem myStarterItem;
 
     public static String foodNameFromAdapter;
     public static String priceFormAdapter;
 
-    public SetMealAdapter(Context myContext, ArrayList<NormalFoodItem> starterItems, ClickedStarterItem csi) {
+    public SetMealAdapter(Context myContext, ArrayList<SubCategoryItemTag> starterItems, ClickedStarterItem csi) {
         this.itemsOfStarter = starterItems;
         this.starterContext = myContext;
         this.myStarterItem = csi;
@@ -52,18 +53,41 @@ public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.SetMealV
     @Override
     public void onBindViewHolder(@NonNull SetMealViewHolder holder, int position) {
 
-        NormalFoodItem starterItem = itemsOfStarter.get(position);
+        SubCategoryItemTag starterItem = itemsOfStarter.get(position);
 
-        holder.starterItemName.setText(starterItem.getMyFood());
-        holder.starterItemDescription.setText(starterItem.getMyFoodDesc());
-        holder.starterCount.setText(starterItem.getMyFoodPrice());
+        holder.starterItemName.setText(starterItem.getfName() + " " + starterItem.getfTag() + " " + starterItem.getfTest());
+        holder.starterItemDescription.setText(starterItem.getfNote());
+        holder.starterCount.setText("£" +starterItem.getfRate());
 
 
-        if (holder.starterItemName.getText().toString().endsWith("V")) {
+        if (holder.starterItemDescription.getText().toString().contains("null")) {
+            holder.starterItemDescription.setText("");
+        }
+
+//        if (starterItem.getfTag().contains("null") && starterItem.getfTest().contains("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName());
+//
+//        } else if(!starterItem.getfTest().contains("null") && starterItem.getfTag().contains("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName() + " " +starterItem.getfTest());
+//
+//        } else if (starterItem.getfTest().contains("null") && !starterItem.getfTag().contains("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName() + " "+ starterItem.getfTag());
+//
+//        }
+        if (holder.starterItemName.getText().toString().contains("null")) {
+            String name = holder.starterItemName.getText().toString().replace("null","");
+            holder.starterItemName.setText(name);
+        }
+
+
+        if (holder.starterItemName.getText().toString().endsWith("V ")) {
 
             String text = holder.starterItemName.getText().toString();
             SpannableString ss = new SpannableString(text);
-            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-1, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ss.setSpan(new ForegroundColorSpan(Color.rgb(0, 148, 50)),text.length()-2, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.starterItemName.setText(ss);
             Log.i("paisi",holder.starterItemName.getText().toString());
 
@@ -100,9 +124,9 @@ public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.SetMealV
         @Override
         public void onClick(View v) {
             clickedStarterItem.onStarterItemClicked(getAdapterPosition());
-            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getMyFood());
-            foodNameFromAdapter = itemsOfStarter.get(getAdapterPosition()).getMyFood();
-            priceFormAdapter = itemsOfStarter.get(getAdapterPosition()).getMyFoodPrice();
+            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getfName());
+            foodNameFromAdapter = itemsOfStarter.get(getAdapterPosition()).getfName();
+            priceFormAdapter = "£" +itemsOfStarter.get(getAdapterPosition()).getfRate();
         }
     }
 }

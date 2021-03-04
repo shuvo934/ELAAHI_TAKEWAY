@@ -19,10 +19,15 @@ import ttit.com.shuvo.elaahitakeway.R;
 import ttit.com.shuvo.elaahitakeway.homepage.cart.CartActivity;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.NormalFoodItem;
 import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.AppitiserMainMenuAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.appitiser.ApptestAdapter;
+import ttit.com.shuvo.elaahitakeway.homepage.mainfood.starterMainMenu.SubCategoryItemTag;
+
+import static ttit.com.shuvo.elaahitakeway.homepage.mainfood.MainCategoryMenu.food1;
 
 public class SunDriesMainMenu extends AppCompatActivity {
 
     public static ArrayList<NormalFoodItem> mySunItem;
+    public static ArrayList<SubCategoryItemTag> sundriestag;
 
     private RecyclerView sunView;
     private AppitiserMainMenuAdapter sunAdapter;
@@ -35,24 +40,27 @@ public class SunDriesMainMenu extends AppCompatActivity {
 
         getSupportActionBar().setTitle("SUNDRIES");
 
-        mySunItem = new ArrayList<>();
+        sundriestag = new ArrayList<>();
+        sundriestag = food1;
 
-        mySunItem.add(new NormalFoodItem("Plain Nan","", "£2.35"));
-        mySunItem.add(new NormalFoodItem("Keema Nan","", "£2.55"));
-        mySunItem.add(new NormalFoodItem("Garlic Nan","", "£2.55"));
-        mySunItem.add(new NormalFoodItem("Coriander Nan","", "£2.55"));
-        mySunItem.add(new NormalFoodItem("Cheese Naan","", "£2.55"));
-        mySunItem.add(new NormalFoodItem("Peshwari Nan","", "£2.55"));
-        mySunItem.add(new NormalFoodItem("Chunky Chips","", "£1.85"));
-        mySunItem.add(new NormalFoodItem("Spicy Peri Peri Fries (New)","", "£2.85"));
-        mySunItem.add(new NormalFoodItem("Chapatti","", "£1.50"));
+        mySunItem = new ArrayList<>();
+//
+//        mySunItem.add(new NormalFoodItem("Plain Nan","", "£2.35"));
+//        mySunItem.add(new NormalFoodItem("Keema Nan","", "£2.55"));
+//        mySunItem.add(new NormalFoodItem("Garlic Nan","", "£2.55"));
+//        mySunItem.add(new NormalFoodItem("Coriander Nan","", "£2.55"));
+//        mySunItem.add(new NormalFoodItem("Cheese Naan","", "£2.55"));
+//        mySunItem.add(new NormalFoodItem("Peshwari Nan","", "£2.55"));
+//        mySunItem.add(new NormalFoodItem("Chunky Chips","", "£1.85"));
+//        mySunItem.add(new NormalFoodItem("Spicy Peri Peri Fries (New)","", "£2.85"));
+//        mySunItem.add(new NormalFoodItem("Chapatti","", "£1.50"));
 
         sunView = findViewById(R.id.sun_dries_main_menu);
         sunView.setHasFixedSize(true);
         sunlayout = new LinearLayoutManager(this);
         sunView.setLayoutManager(sunlayout);
 
-        sunAdapter = new AppitiserMainMenuAdapter(this, mySunItem);
+        sunAdapter = new AppitiserMainMenuAdapter(this, sundriestag);
         sunView.setAdapter(sunAdapter);
 
     }
@@ -78,6 +86,7 @@ public class SunDriesMainMenu extends AppCompatActivity {
 
                 Intent intent = new Intent(this, CartActivity.class);
                 startActivity(intent);
+                food1.clear();
                 finish();
                 return true;
             case R.id.subitem1:
@@ -92,5 +101,11 @@ public class SunDriesMainMenu extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        food1.clear();
+        finish();
     }
 }

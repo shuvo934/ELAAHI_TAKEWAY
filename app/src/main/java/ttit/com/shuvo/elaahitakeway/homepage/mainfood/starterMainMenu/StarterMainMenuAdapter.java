@@ -23,11 +23,11 @@ import ttit.com.shuvo.elaahitakeway.homepage.elaahifood.adult.starters.StarterIt
 
 public class StarterMainMenuAdapter extends RecyclerView.Adapter<StarterMainMenuAdapter.StarterMainMenuViewHolder> {
 
-    public ArrayList<StarterItem> itemsOfStarter;
+    public ArrayList<SubCategoryItemTag> itemsOfStarter;
     public Context starterContext;
     private ClickedStarterItem myStarterItem;
 
-    public StarterMainMenuAdapter(Context myContext, ArrayList<StarterItem> starterItems, ClickedStarterItem csi) {
+    public StarterMainMenuAdapter(Context myContext, ArrayList<SubCategoryItemTag> starterItems, ClickedStarterItem csi) {
         this.itemsOfStarter = starterItems;
         this.starterContext = myContext;
         this.myStarterItem = csi;
@@ -48,14 +48,47 @@ public class StarterMainMenuAdapter extends RecyclerView.Adapter<StarterMainMenu
     @Override
     public void onBindViewHolder(@NonNull StarterMainMenuViewHolder holder, int position) {
 
-        StarterItem starterItem = itemsOfStarter.get(position);
+        SubCategoryItemTag starterItem = itemsOfStarter.get(position);
 
-        holder.starterItemName.setText(starterItem.getTypeOfFood());
-        holder.starterItemDescription.setText(starterItem.getFoodDescribed());
-        holder.starterCount.setText(starterItem.getFoodCount());
+        holder.starterItemName.setText(starterItem.getfName() +" "+ starterItem.getfTag() + " " + starterItem.getfTest());
+        holder.starterItemDescription.setText(starterItem.getfNote());
+        holder.starterCount.setText(starterItem.getfRate());
         holder.starterCount.setVisibility(View.INVISIBLE);
 
-        if (holder.starterItemName.getText().toString().endsWith("V")) {
+        String tag =  starterItem.getfTag();
+        String test = starterItem.getfTest();
+        System.out.println(tag);
+        System.out.println(test);
+
+
+        String helloWorld = "Hello World!";
+        String hellWrld = helloWorld.replace("o","");
+        System.out.println(hellWrld);
+
+        if (holder.starterItemName.getText().toString().contains("null")) {
+            String name = holder.starterItemName.getText().toString().replace("null","");
+            holder.starterItemName.setText(name);
+        }
+
+        if (holder.starterItemDescription.getText().toString().contains("null")) {
+            holder.starterItemDescription.setText("");
+        }
+
+//        if (tag.endsWith("null") && test.endsWith("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName());
+//
+//        } else if(!test.endsWith("null") && tag.endsWith("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName() + " " +starterItem.getfTest());
+//
+//        } else if (test.endsWith("null") && !tag.endsWith("null")) {
+//
+//            holder.starterItemName.setText(starterItem.getfName() + " "+ starterItem.getfTag());
+//
+//        }
+
+        if (holder.starterItemName.getText().toString().endsWith("V ")) {
 
             String text = holder.starterItemName.getText().toString();
             SpannableString ss = new SpannableString(text);
@@ -64,6 +97,13 @@ public class StarterMainMenuAdapter extends RecyclerView.Adapter<StarterMainMenu
             Log.i("paisi",holder.starterItemName.getText().toString());
 
         }
+
+
+
+
+
+
+
 
     }
 
@@ -96,7 +136,7 @@ public class StarterMainMenuAdapter extends RecyclerView.Adapter<StarterMainMenu
         @Override
         public void onClick(View v) {
             clickedStarterItem.onStarterItemClicked(getAdapterPosition());
-            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getTypeOfFood());
+            Log.i("Starter Name", itemsOfStarter.get(getAdapterPosition()).getfName());
         }
     }
 }

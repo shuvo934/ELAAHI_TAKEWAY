@@ -18,10 +18,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -31,121 +29,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="ELAAHI SPECIALS"
+            android:text=""
             android:textAlignment="textStart"
             android:textSize="30sp"
             android:textStyle="bold|italic" />
 
-        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:elevation="50dp"
-            android:outlineAmbientShadowColor="@color/black"
-            android:padding="35dp"
-            app:cardCornerRadius="50dp">
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="match_parent"
-                android:onClick="adultElaahi"
-                android:layout_height="250dp"
-                app:srcCompat="@drawable/design" />
-
-            <TextView
-                android:id="@+id/adult_elahi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:elevation="10dp"
-                android:scrollbarSize="10dp"
-                android:shadowColor="@color/black"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:text="ADULT FOOD"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold|italic" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/sea_green">
-                <TextView
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="£20.95"
-                    android:elevation="10dp"
-                    android:scrollbarSize="10dp"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold|italic"/>
-            </LinearLayout>
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-        </androidx.cardview.widget.CardView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/ellahi_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
 
-        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:elevation="50dp"
-            android:outlineAmbientShadowColor="@color/black"
-            android:padding="35dp"
-            app:cardCornerRadius="50dp">
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:onClick="childElaahi"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                app:srcCompat="@drawable/design" />
+                    </LinearLayout>
 
-            <TextView
-                android:id="@+id/child_elahi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:elevation="10dp"
-                android:scrollbarSize="10dp"
-                android:shadowColor="@color/black"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:text="CHILD FOOD"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold|italic" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/sea_green">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="£10.95"
-                    android:elevation="10dp"
-                    android:scrollbarSize="10dp"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold|italic"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
+                </ScrollView>
+
+
+
 
             </LinearLayout>
 
-        </ScrollView>
+
 
     </LinearLayout>
 
